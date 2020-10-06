@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 else if (isWifi)
                     return true;
                 else {
+                    String a = "0";
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setPositiveButton(android.R.string.no, new DialogInterface.OnClickListener() {
                         @Override
