@@ -18,7 +18,7 @@ import java.util.Random;
 import java.util.regex.Pattern;
 
 public class smsCodeSender implements Serializable {
-    private  String apiKey;
+    private String apiKey;
     private String digitCode;
     private String number;
     private String message;
@@ -29,7 +29,7 @@ public class smsCodeSender implements Serializable {
 
     private smsCodeSender(final Builder builder) {
         apiKey = builder.apiKey;
-        digitCode =  builder.digitCode;
+        digitCode = builder.digitCode;
         number = builder.number;
         message = builder.message;
         url = builder.url;
@@ -39,16 +39,19 @@ public class smsCodeSender implements Serializable {
     }
 
 
+    public void setStatusCode(String s) {
+        this.statusCode = s;
+    }
 
-
-    public void setStatusCode(String s){this.statusCode = s;}
-    public String getStatusCode(){return this.statusCode;}
+    public String getStatusCode() {
+        return this.statusCode;
+    }
 
     public boolean smsCodeSend(Context context) {
 
         final String[] status = new String[1];
         final RequestQueue requestQueue = Volley.newRequestQueue(context);
-        final JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, this.apiCommand , null,
+        final JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, this.apiCommand, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -69,11 +72,11 @@ public class smsCodeSender implements Serializable {
         });
         this.setStatusCode(status[0]);
         requestQueue.add(objectRequest);
-        return this.statusCode=="200" ? false : true ;
+        return this.statusCode == "200" ? false : true;
     }
 
 
-    static class Builder{
+    static class Builder {
         private String apiKey;
         private String digitCode;
         private String number;
@@ -83,68 +86,59 @@ public class smsCodeSender implements Serializable {
         private String apiCommand;
         private String sender;
         private String statusCode;
-        public Builder setApiKey(final String key)
-        {
-                this.apiKey = key;
-                return this;
+
+        public Builder setApiKey(final String key) {
+            this.apiKey = key;
+            return this;
         }
 
-        public Builder setSender(final String num)
-        {
+        public Builder setSender(final String num) {
             this.sender = num;
             return this;
         }
 
-        public Builder GeneratedigitCode(final double digit)
-        {
-            double range_start = Math.pow(10,digit-1);
-            double range_end = Math.pow(10,digit)-1;
+        public Builder GeneratedigitCode(final double digit) {
+            double range_start = Math.pow(10, digit - 1);
+            double range_end = Math.pow(10, digit) - 1;
             double random = new Random().nextDouble() * (range_end - range_start) + range_start;
             this.digitCode = String.valueOf(Math.round(random));
             return this;
         }
-        public Builder setNumber(final String num)
-        {
+
+        public Builder setNumber(final String num) {
             this.number = num;
             return this;
         }
-        public Builder setMessage(final String message)
-        {
+
+        public Builder setMessage(final String message) {
             this.message = message;
             return this;
         }
 
-        public Builder setUrl(final String url)
-        {
+        public Builder setUrl(final String url) {
             this.url = url;
             return this;
         }
 
-        public Builder setApiCommand ()
-        {
+        public Builder setApiCommand() {
             this.apiCommand = this.url + this.apiKey + "/sms/send.json?receptor=" + this.number + ",&message=" + this.message + this.digitCode;
-            Log.e("command", "setApiCommand: "+this.apiCommand );
+            Log.e("command", "setApiCommand: " + this.apiCommand);
             return this;
         }
 
-
-
-        public smsCodeSender create(){
+        public smsCodeSender create() {
             smsCodeSender smscodesender = new smsCodeSender(this);
-            if (this.apiKey.equals(""))
-            {
+            if (this.apiKey.equals("")) {
                 throw new IllegalStateException(
                         "API key is empty!"
                 );
             }
-            if (!this.patternNumber.matcher(this.number).matches())
-            {
+            if (!this.patternNumber.matcher(this.number).matches()) {
                 throw new IllegalStateException(
                         "Mobile number format not valid!"
                 );
             }
-            if (this.sender.equals(""))
-            {
+            if (this.sender.equals("")) {
                 throw new IllegalStateException(
                         "Sender number is empty!"
                 );

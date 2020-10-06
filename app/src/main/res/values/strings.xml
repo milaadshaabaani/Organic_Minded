@@ -2,10 +2,13 @@
     <string name="app_name">Organic Minded</string>
     <string name="str_Mobile_number">شماره موبایل</string>
     <string name="str_Go">ورود</string>
-    <string name="str_phoneError">شماره وارد شده صحیح نیست</string>
+    <string name="str_num_Error">شماره وارد شده صحیح نیست</string>
     <string name="str_sms_send_error">ارسال کد فعالسازی با مشکل مواجه شده است</string>
     <string name="str_sms_send">کد فعالسازی ارسال شد</string>
     <string name="str_noInternetConnection">مشکل در برقراری ارتباط</string>
+    <string name="str_net_wifi">اینترنت Wifi</string>
+    <string name="str_net_data">اینترنت موبایل</string>
     <string name="str_Hoshdar">هشدار</string>
+
 
 </resources>
