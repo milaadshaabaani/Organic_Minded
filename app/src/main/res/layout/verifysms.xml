@@ -1,6 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
 
-</android.support.constraint.ConstraintLayout>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context=".verifySmsActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:src="@drawable/verifycode"></ImageView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:text="@string/str_enter_verify_code"
+            android:textAlignment="center"
+            android:textColor="#5f5f5f"
+            android:textSize="20dp"
+            android:textStyle="bold"></TextView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/edit_text_bg">
+
+            <EditText
+                android:id="@+id/verify_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:hint="* * * * *"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textSize="30dp"></EditText>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/verify_ok_button"
+            android:layout_width="180dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/ok_button_background"
+            android:text="@string/str_ok"
+            android:textColor="#000000"
+            android:textSize="20dp"></Button>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp">
+
+            <Button
+                android:id="@+id/resend_verify_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/str_resend_sms"
+                android:gravity="center"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="60dp"
+                android:textSize="18dp"
+                android:layout_gravity="bottom"></Button>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</LinearLayout>

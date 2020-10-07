@@ -9,6 +9,9 @@
     <string name="str_net_wifi">اینترنت Wifi</string>
     <string name="str_net_data">اینترنت موبایل</string>
     <string name="str_Hoshdar">هشدار</string>
+    <string name="str_enter_verify_code">کد فعال سازی را وارد کنید</string>
+    <string name="str_ok">تایید</string>
+    <string name="str_resend_sms">نیاز به کد جدید دارم</string>
 
 
 </resources>

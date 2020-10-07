@@ -38,27 +38,22 @@ public class MainActivity extends AppCompatActivity {
         txt_number_input.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                Toast.makeText(getApplicationContext(),String.valueOf(patternNumber.matcher(txt_number_input.getText().toString()).matches()) , Toast.LENGTH_LONG).show();
-           btn_go_sms.setEnabled(true);
+                btn_go_sms.setEnabled(true);
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                Toast.makeText(getApplicationContext(), String.valueOf(!patternNumber.matcher(txt_number_input.getText().toString()).matches()), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                Toast.makeText(getApplicationContext(), String.valueOf(patternNumber.matcher(txt_number_input.getText().toString()).matches()), Toast.LENGTH_SHORT).show();
                 if (patternNumber.matcher(txt_number_input.getText().toString()).matches()) {
 
                     btn_go_sms.setClickable(true);
                     btn_go_sms.setBackground(getResources().getDrawable(R.drawable.bg_button_enable));
 
 
-
-                }else
-                {
+                } else {
                     btn_go_sms.setClickable(false);
                     btn_go_sms.setBackground(getResources().getDrawable(R.drawable.bg_button_disable));
                 }
@@ -69,25 +64,25 @@ public class MainActivity extends AppCompatActivity {
         btn_go_sms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    smsCodeSender smsSender = new smsCodeSender.Builder()
-                            .setApiKey("482B65573437724E33306E4C7A5A6F324E4B4F526561427766694E445834695A6F6E506E32496F4D712B733D")
-                            .GeneratedigitCode(5)
-                            .setNumber(txt_number_input.getText().toString())
-                            .setMessage("Your.OrganicMinded.Code:")
-                            .setSender("981000596446")
-                            .setUrl("https://api.kavenegar.com/v1/")
-                            .setApiCommand()
-                            .create();
-                    boolean status = smsSender.smsCodeSend(getApplicationContext());
-                    Log.e("sd", "onClick: " + String.valueOf(status));
-                    if (status) {
-                        Toast.makeText(getApplicationContext(), R.string.str_sms_send, Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(MainActivity.this, verifySmsActivity.class);
-                        intent.putExtra("Sender", smsSender);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(getApplicationContext(), R.string.str_sms_send_error, Toast.LENGTH_LONG).show();
-                    }
+                smsCodeSender smsSender = new smsCodeSender.Builder()
+                        .setApiKey("482B65573437724E33306E4C7A5A6F324E4B4F526561427766694E445834695A6F6E506E32496F4D712B733D")
+                        .GeneratedigitCode(5)
+                        .setNumber(txt_number_input.getText().toString())
+                        .setMessage("Your.OrganicMinded.Code:")
+                        .setSender("981000596446")
+                        .setUrl("https://api.kavenegar.com/v1/")
+                        .setApiCommand()
+                        .create();
+                boolean status = smsSender.smsCodeSend(getApplicationContext());
+                Log.e("sd", "onClick: " + String.valueOf(status));
+                if (status) {
+                    Toast.makeText(getApplicationContext(), R.string.str_sms_send, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MainActivity.this, verifySmsActivity.class);
+                    intent.putExtra("Sender", smsSender);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.str_sms_send_error, Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

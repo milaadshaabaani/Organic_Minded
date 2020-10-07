@@ -39,8 +39,10 @@ public class smsCodeSender implements Serializable {
     }
 
 
+    public String getDigitCode(){return this.digitCode;}
+
     public void setStatusCode(String s) {
-        this.statusCode = s;
+        this.statusCode = s.equals(null)?"":s;
     }
 
     public String getStatusCode() {
@@ -70,9 +72,9 @@ public class smsCodeSender implements Serializable {
                 Log.e("smsCodeSendApiError", "smsCodeSend: Rest Response = " + error.toString());
             }
         });
-        this.setStatusCode(status[0]);
         requestQueue.add(objectRequest);
-        return this.statusCode == "200" ? false : true;
+        this.setStatusCode(status[0]);
+        return this.statusCode.equals("200") ? false : true;
     }
 
 
