@@ -12,6 +12,10 @@
     <string name="str_enter_verify_code">کد فعال سازی را وارد کنید</string>
     <string name="str_ok">تایید</string>
     <string name="str_resend_sms">نیاز به کد جدید دارم</string>
+    <string name="str_sending">در حال ارسال...</string>
+    <string name="str_send">ارسال</string>
+    <string name="str_sended">کد ارسال شد</string>
+    <string name="str_error">خطا</string>
 
 
 </resources>

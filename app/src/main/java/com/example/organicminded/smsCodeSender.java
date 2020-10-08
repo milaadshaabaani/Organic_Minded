@@ -10,7 +10,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -49,32 +48,28 @@ public class smsCodeSender implements Serializable {
         return this.statusCode;
     }
 
-    public boolean smsCodeSend(Context context) {
 
-        final String[] status = new String[1];
+    public void smsCodeSend(Context context,final VolleyCallback callback) {
+
+
         final RequestQueue requestQueue = Volley.newRequestQueue(context);
         final JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, this.apiCommand, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
 
+                        callback.onSuccess(response);
                         Log.e("smsCodeSendApiRespons", "smsCodeSend: Rest Response = " + response.toString());
-                        try {
-                            status[0] = ((JSONObject) response.get("return")).get("status").toString();
-                            Log.e("smsCodeSendApiRespons", "smsCodeSend: " + status[0]);
-                        } catch (JSONException e) {
-                            Log.e("smsCodeSendApiRespons", "smsCodeSend catch: " + e.getMessage());
-                        }
+
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                setStatusCode("200");
                 Log.e("smsCodeSendApiError", "smsCodeSend: Rest Response = " + error.toString());
             }
         });
         requestQueue.add(objectRequest);
-        this.setStatusCode(status[0]);
-        return this.statusCode.equals("200") ? false : true;
     }
 
 

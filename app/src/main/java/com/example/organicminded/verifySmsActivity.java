@@ -6,11 +6,12 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.json.JSONObject;
 
 public class verifySmsActivity extends AppCompatActivity {
 
@@ -56,8 +57,12 @@ public class verifySmsActivity extends AppCompatActivity {
         resendVerifyCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean status = smsSender.smsCodeSend(getApplicationContext());
-                Log.e("resend SMS", "onClick: " + String.valueOf(status));
+                smsSender.smsCodeSend(getApplicationContext(), new VolleyCallback() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+
+                    }
+                });
             }
         });
 
